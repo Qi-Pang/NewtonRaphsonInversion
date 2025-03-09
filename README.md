@@ -38,7 +38,7 @@ python main.py
 We have also implemented a fast fixed-point inversion for StableDiffuion2.1 (See more details in [our previous paper](https://arxiv.org/pdf/2312.12540v1)).
 
 ```
-cd src/FPI
+cd src/FixedPointInversion
 PYTHONPATH='.' python main.py
 ```
 
