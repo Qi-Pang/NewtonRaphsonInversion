@@ -89,11 +89,9 @@ if __name__ == '__main__':
     image_size = (512, 512)
     scheduler_class = MyEulerAncestralDiscreteScheduler
     pipe_inversion = SDXLDDIMPipeline.from_pretrained("stabilityai/sdxl-turbo", use_safetensors=True,
-                                                      safety_checker=None, cache_dir="/inputs/huggingface_cache").to(
-        device)
+                                                      safety_checker=None).to(device)
     pipe_inference = AutoPipelineForImage2Image.from_pretrained("stabilityai/sdxl-turbo", use_safetensors=True,
-                                                                safety_checker=None,
-                                                                cache_dir="/inputs/huggingface_cache").to(device)
+                                                                safety_checker=None,).to(device)
     pipe_inference.scheduler = scheduler_class.from_config(pipe_inference.scheduler.config)
     pipe_inversion.scheduler = scheduler_class.from_config(pipe_inversion.scheduler.config)
     pipe_inversion.scheduler_inference = scheduler_class.from_config(pipe_inference.scheduler.config)
@@ -109,4 +107,5 @@ if __name__ == '__main__':
 
     editing_prompt = "a raccoon is sitting in the grass at sunset"
     plt.imshow(editor.edit(editing_prompt))
-    plt.show()
+    plt.savefig('example_images/edited_lion.jpeg')
+    # plt.show()
